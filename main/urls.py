@@ -5,7 +5,7 @@ from rest_framework.routers import DefaultRouter
 app_name= 'main'
 router = DefaultRouter()
 
-# router.register("all-courses", ViewSet, basename="")
+# router.register(r"", SomeViewSet, basename="")
 
 urlpatterns = [
     

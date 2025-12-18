@@ -5,7 +5,7 @@ from rest_framework.routers import DefaultRouter
 app_name= 'ratings'
 router = DefaultRouter()
 
-# router.register("", SomeViewSet, basename="")
+# router.register(r"", SomeViewSet, basename="")
 
 urlpatterns = [
     
