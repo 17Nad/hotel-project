@@ -1,5 +1,5 @@
 from django.urls import path
-from ratings.api import *
+from ratings.views import *
 from rest_framework.routers import DefaultRouter
 
 app_name= 'ratings'

@@ -1,5 +1,5 @@
 from django.contrib import admin
-from ratings.models import Rating, Comment
+from ratings.models import Post, Comment
 
-admin.site.register(Rating)
+admin.site.register(Post)
 admin.site.register(Comment)
