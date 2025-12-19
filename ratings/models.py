@@ -5,6 +5,7 @@ from users.models import User
 
 
 class Post(models.Model): #only hotel admins can upload posts.
+    title = models.CharField(max_length=128)
     media = models.ImageField(upload_to='media/posts/%Y/%m/%d/', null=True, blank=True)
     caption = models.TextField(null=True, blank=True)
     comments_are_allowed = models.BooleanField(default=True)
@@ -16,7 +17,7 @@ class Post(models.Model): #only hotel admins can upload posts.
     hotel = models.ForeignKey(Hotel, on_delete=models.SET_NULL, null=True, blank=True, related_name="rating")
 
     def __str__(self):
-        return f"{self.hotel.title}'s ratings"
+        return f"{self.hotel.title} posted: {self.title}"
   
 
 
@@ -35,6 +36,9 @@ class Comment(models.Model): #all users(admins, hotel staff, and clients) can po
     post = models.ForeignKey(Post, on_delete = models.CASCADE, related_name="comments")
     user = models.ForeignKey(User, null=True, on_delete=models.SET_NULL, related_name="comments")
 
+    def __str__(self):
+        return f"{self.user.first_name} commented: {self.message}"
+    
 
 class Reply(models.Model):
     message = models.TextField()
@@ -42,3 +46,6 @@ class Reply(models.Model):
     dislikes = models.IntegerField(default=0)
     comment = models.ForeignKey(Comment, on_delete=models.CASCADE, related_name="replies")
     user = models.ForeignKey(User, null=True, on_delete=models.SET_NULL, related_name="replies")
+
+    def __str__(self):
+        return f"{self.user.first_name} replied: {self.message}"

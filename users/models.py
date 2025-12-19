@@ -49,3 +49,11 @@ class Wallet(models.Model):
 
 
 
+class Payment(models.Model):
+    amount = models.PositiveBigIntegerField()
+    date_paid=models.DateField(auto_now=True)
+    payer= models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True, related_name="payment")
+    reciever = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True)
+
+    def __str__ (self):
+        return f"{self.payer.user.first_name} payed {self.amount}"

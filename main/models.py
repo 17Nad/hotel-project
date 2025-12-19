@@ -6,8 +6,10 @@ from users.models import Client,Admin, User, Wallet
 
 class Hotel(models.Model):
     title = models.CharField(max_length=128)
-    stars = models.FloatField(
+    stars = models.DecimalField( #TODO: stars = avg(comments.stars), this means i should add an ability to post comments under a hotel object too
         default=0.0,
+        decimal_places=0,
+        max_digits=1,
         validators=[
             MinValueValidator(0.0),
             MaxValueValidator(5.0)
